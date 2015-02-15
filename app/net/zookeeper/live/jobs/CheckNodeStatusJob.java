@@ -1,14 +1,10 @@
 package net.zookeeper.live.jobs;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Date;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import play.Logger;
 import net.zookeeper.live.common.NodeProperty;
+import net.zookeeper.live.utils.ShellUtil;
 
 /**
  * run shell script to get status of node<p>
@@ -29,30 +25,11 @@ import net.zookeeper.live.common.NodeProperty;
  * @author pengfei.zhu
  *
  */
-public class CheckNodeStatus {
+public class CheckNodeStatusJob extends Thread {
 
 	public static NodeProperty getStatus(String path) {
 
-		String result = null;
-		try {
-			// TODO beware to set an appropriate shell path:
-			String shpath = "/zk_status.sh";
-			Process ps = Runtime.getRuntime().exec(shpath);
-			ps.waitFor();
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					ps.getInputStream()));
-			StringBuffer sb = new StringBuffer();
-			String line;
-			while ((line = br.readLine()) != null) {
-				sb.append(line).append("\n");
-			}
-			result = sb.toString();
-		} catch (Exception e) {
-			Logger.error("[CheckNodeStatus] ", e);
-			return null;
-		}
-
+		String result = ShellUtil.execShell("/zk_status.sh " + path);
 		if (StringUtils.isEmpty(result))
 			return null;
 		NodeProperty property = new NodeProperty();

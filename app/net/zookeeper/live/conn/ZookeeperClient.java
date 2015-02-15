@@ -20,7 +20,7 @@ import play.Logger;
 public class ZookeeperClient implements Closeable {
 
 	private ZkClient client = null;
-	
+
 	private boolean ifConnect = true;
 
 	private static final int DEFAULT_SESSION_TIME_OUT = 5000;
@@ -38,8 +38,9 @@ public class ZookeeperClient implements Closeable {
 	}
 
 	private ZookeeperClient() {
-		
-		if (!ifConnect) return;
+
+		if (!ifConnect)
+			return;
 		try {
 			client = new ZkClient(Configuration.root().getString(
 					"zookeeper.servers"), DEFAULT_SESSION_TIME_OUT,
@@ -89,19 +90,23 @@ public class ZookeeperClient implements Closeable {
 		}
 
 	}
-	
+
 	public PathTrie getAllNodes() {
 		PathTrie pathTrie = PathTrie.ZkPathTrie();
 		pathTrie.clear();
 		addChildren(pathTrie, "/");
-		
-		//TODO start a thread to read data of all nodes:
-		//TODO start a thread to read status of all nodes:
+
+		// TODO start a thread to read data of all nodes:
+		// TODO start a thread to read status of all nodes:
 		return null;
 	}
-	
+
 	private void addChildren(PathTrie pathTrie, String path) {
-		
+
+		if (client == null) {
+			Logger.error("[ZookeeperClient] client null path:" + path);
+			return;
+		}
 		List<String> children = client.getChildren(path);
 		pathTrie.addNodes(children);
 		for (String child : children) {
