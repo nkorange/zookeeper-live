@@ -4,9 +4,15 @@ import play.GlobalSettings;
 
 /**
  *
- * @author pengfei.zhu
+ * @author zpf.073@gmail.com
  *
  */
 public class Initialization extends GlobalSettings {
+	
+	public static void initializeDB() {
+		
+		//TODO initialize database:
+		
+	}
 
 }
