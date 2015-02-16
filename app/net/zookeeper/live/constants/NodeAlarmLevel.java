@@ -1,7 +1,7 @@
 package net.zookeeper.live.constants;
 /**
  *
- * @author pengfei.zhu
+ * @author zpf.073@gmail.com
  *
  */
 public class NodeAlarmLevel {

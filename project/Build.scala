@@ -22,6 +22,7 @@ object ApplicationBuild extends Build {
     .exclude("log4j", "log4j")
     .exclude("org.slf4j", "slf4j-log4j12")
     .exclude("com.sun.jdmk", "jmxtools"),
+    "com.101tec" % "zkclient" % "0.3",
     javaCore,
     javaJdbc,
     javaEbean

@@ -13,6 +13,14 @@ public class NodeSettings {
 	 */
 	private int alarmLevel;
 
+	public NodeSettings() {
+		alarmLevel = NodeAlarmLevel.LEVEL_DEFAULT;
+	}
+	
+	public NodeSettings(int alarmLevel) {
+		this.alarmLevel = alarmLevel;
+	}
+	
 	public int getAlarmLevel() {
 		return alarmLevel;
 	}
