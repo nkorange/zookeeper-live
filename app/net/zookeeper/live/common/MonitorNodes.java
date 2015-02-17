@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import play.Logger;
 import net.zookeeper.live.common.PathTrie.TrieNode;
+import net.zookeeper.live.constants.NodeAlarmLevel;
 
 /**
  * This class store the nodes we want to monitor
@@ -31,14 +32,19 @@ public class MonitorNodes {
 	}
 
 	public void addNode(String path) {
+		addNode(path, NodeAlarmLevel.LEVEL_DEFAULT);
+	}
+
+	public void addNode(String path, int alarmLevel) {
 		// query if node exists:
 		TrieNode node = PathTrie.zkPathTrie().getNode(path);
 		if (node == null) {
 			Logger.error("[MonitorNodes] node not exist path:" + path);
 			return;
 		}
-
+		node.setSettings(new NodeSettings(alarmLevel));
 		nodes.put(path, node);
+
 	}
 
 	public void deleteNode(String path) {

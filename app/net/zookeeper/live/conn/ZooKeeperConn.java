@@ -3,15 +3,20 @@ package net.zookeeper.live.conn;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+import net.zookeeper.live.common.NodeInfo;
 import net.zookeeper.live.common.PathTrie;
+import net.zookeeper.live.constants.NodeState;
 
 import org.I0Itec.zkclient.exception.ZkTimeoutException;
 import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.KeeperException.ConnectionLossException;
 import org.apache.zookeeper.KeeperException.SessionExpiredException;
 import org.apache.zookeeper.WatchedEvent;
@@ -131,6 +136,57 @@ public class ZooKeeperConn implements Watcher {
 			}
 		} finally {
 		}
+
+	}
+
+	public Map<String, NodeInfo> getNodes(List<String> paths) {
+		NodeInfo info = null;
+		Map<String, NodeInfo> nodes = new HashMap<String, NodeInfo>();
+		for (String path : paths) {
+			info = getNode(path);
+			if (info!=null) {
+				nodes.put(path, info);
+			}
+		}
+		return nodes;
+	}
+
+	public NodeInfo getNode(String path) {
+
+		if (client == null) {
+			Logger.error("[ZookeeperClient] client null path:" + path);
+			return null;
+		}
+
+		NodeInfo info = new NodeInfo();
+		info.setState(NodeState.STATE_UNKNOWN);
+		byte[] data = null;
+		
+		try {
+			data = client.getData(path, true, null);
+		} catch (KeeperException e) {
+			if (e.code() == Code.NONODE) {
+				info.setState(NodeState.STATE_DOWN);
+			}
+			return info;
+		} catch (InterruptedException e) {
+			Logger.error("[ZooKeeperConn] ", e);
+			return info;
+		}
+		
+		info.setData(data);
+		info.setState(NodeState.STATE_UP);
+		return info;
+
+		/*client.getData(path, true, new DataCallback() {
+
+			@Override
+			public void processResult(int rc, String path, Object ctx,
+					final byte[] readData, Stat stat) {
+				// TODO Auto-generated method stub
+
+			}
+		}, null);*/
 
 	}
 

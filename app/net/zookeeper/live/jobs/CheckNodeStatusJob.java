@@ -26,6 +26,8 @@ import net.zookeeper.live.utils.ShellUtil;
  *
  */
 public class CheckNodeStatusJob extends Thread {
+	
+	private LinkedList<>
 
 	public static NodeProperty getStatus(String path) {
 
@@ -49,4 +51,10 @@ public class CheckNodeStatusJob extends Thread {
 		
 		return property;
 	}
+	
+	@Override
+    public void run() {
+        
+		
+    }
 }
