@@ -1,9 +1,12 @@
 package net.zookeeper.live.jobs;
 
+import java.util.LinkedList;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import net.zookeeper.live.common.NodeProperty;
+import net.zookeeper.live.common.Task;
 import net.zookeeper.live.utils.ShellUtil;
 
 /**
@@ -27,7 +30,7 @@ import net.zookeeper.live.utils.ShellUtil;
  */
 public class CheckNodeStatusJob extends Thread {
 	
-	private LinkedList<>
+	private LinkedList<Task> taskList = new LinkedList<Task>();
 
 	public static NodeProperty getStatus(String path) {
 
@@ -55,6 +58,11 @@ public class CheckNodeStatusJob extends Thread {
 	@Override
     public void run() {
         
-		
+		while (true) {
+			synchronized(taskList) {
+				Task task = taskList.remove();
+				
+			}
+		}
     }
 }

@@ -8,6 +8,7 @@ import play.GlobalSettings;
  *
  */
 public class Initialization extends GlobalSettings {
+
 	
 	public static void initializeDB() {
 		
