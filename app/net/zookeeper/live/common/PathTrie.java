@@ -217,19 +217,19 @@ public class PathTrie implements Serializable{
 			this.directory = directory;
 		}
 
-		NodeProperty getProperty() {
+		public NodeProperty getProperty() {
 			return this.property;
 		}
 
-		void setProperty(NodeProperty property) {
+		public void setProperty(NodeProperty property) {
 			this.property = property;
 		}
 
-		NodeSettings getSettings() {
+		public NodeSettings getSettings() {
 			return settings;
 		}
 
-		void setSettings(NodeSettings settings) {
+		public void setSettings(NodeSettings settings) {
 			this.settings = settings;
 		}
 

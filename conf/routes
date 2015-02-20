@@ -5,5 +5,7 @@
 # Home page
 GET     /                           net.zookeeper.live.controllers.BaseController.index()
 GET		/paths						net.zookeeper.live.controllers.QueryController.getPaths()
+GET		/*file					controllers.Assets.at(path="/public", file)
+POST		/*file					controllers.Assets.at(path="/public", file)
 # Map static resources from the /public folder to the /assets URL path
-# GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,5 +1,7 @@
 package net.zookeeper.live.global;
 
+import net.zookeeper.live.jobs.MainJob;
+import play.Application;
 import play.GlobalSettings;
 
 /**
@@ -9,11 +11,16 @@ import play.GlobalSettings;
  */
 public class Initialization extends GlobalSettings {
 
-	
+	@Override
+	public void onStart(Application application) {
+
+		MainJob.getInstance().start();
+	}
+
 	public static void initializeDB() {
-		
-		//TODO initialize database:
-		
+
+		// TODO initialize database:
+
 	}
 
 }

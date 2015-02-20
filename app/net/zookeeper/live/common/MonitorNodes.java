@@ -30,6 +30,10 @@ public class MonitorNodes {
 	public Map<String, TrieNode> getAllNodes() {
 		return nodes;
 	}
+	
+	public boolean hasNode(String path) {
+		return nodes.containsKey(path);
+	}
 
 	public void addNode(String path) {
 		addNode(path, NodeAlarmLevel.LEVEL_DEFAULT);
@@ -44,7 +48,7 @@ public class MonitorNodes {
 		}
 		node.setSettings(new NodeSettings(alarmLevel));
 		nodes.put(path, node);
-
+		//here we send this 
 	}
 
 	public void deleteNode(String path) {
