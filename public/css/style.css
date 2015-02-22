@@ -340,7 +340,6 @@ table.stylized tfoot td {
 table.stylized tr:nth-child(even) td {
 }
 table.stylized tbody tr:nth-child(odd) th,table.stylized tbody tr:nth-child(odd) td {
-	background:#FAFDFE;
 }
 table.stylized caption {
 	margin-bottom:1em;
@@ -1969,7 +1968,7 @@ table.display td {
 	/*padding: 3px 10px;*/
 	word-break: break-all; 
 	word-wrap: break-word;
-	width: 200px;
+	width: 200px !important;
 }
 
 table.display td.center {
@@ -2001,15 +2000,7 @@ table.display tr.odd.gradeA {
 }
 
 table.display tr.even.gradeA {
-	background-color: #eeffee;
-}
-
-table.display tr.odd.gradeA {
 	background-color: #ddffdd;
-}
-
-table.display tr.even.gradeA {
-	background-color: #eeffee;
 }
 
 table.display tr.odd.gradeC {
@@ -2085,7 +2076,7 @@ tr.odd.gradeA td.sorting_3 {
 }
 
 tr.even.gradeA td.sorting_1 {
-	background-color: #d5ffd5;
+	background-color: #c4ffc4;
 }
 
 tr.even.gradeA td.sorting_2 {

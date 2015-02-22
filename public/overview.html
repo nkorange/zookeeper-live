@@ -203,7 +203,7 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 						<table class="no-style full">
 							<tbody>
 								<tr>
-									<td>Total Nodes</td>
+									<td>Total Nodes in ZooKeeper</td>
 									<td class="ta-right"><a href="#">10</a></td>
 									<td class="ta-right">Last <a href="#">Refresh</a>:
 										2015-02-20 10:00:00
@@ -294,19 +294,15 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 				</div>
 				<div class="content-box">
 					<header>
-						<h3>Latest in the Community</h3>
+						<h3>Current Time on Server</h3>
 					</header>
 					<section>
-						<dl>
-							<dt>Maximize every interaction with a client</dt>
-							<dd>
-								<a href="#">Read more</a>
-							</dd>
-							<dt>Diversification for Small Business Owners</dt>
-							<dd>
-								<a href="#">Read more</a>
-							</dd>
-						</dl>
+						<span id="aa"> </span>
+						<script class="center">
+							setInterval(
+									"aa.innerHTML=new Date().toLocaleString();",
+									1000);
+						</script>
 					</section>
 				</div>
 			</aside>

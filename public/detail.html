@@ -64,6 +64,18 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 		Administry.expandableRows();
 	});
 </script>
+<link rel="stylesheet" href="css/tree.css" type="text/css" />
+<!-- <script type="text/javascript"
+	src="http://www.keleyi.com/keleyi/pmedia/jquery-1.8.2.min.js"></script> -->
+<script type="text/javascript"
+	src="http://www.keleyi.com/keleyi/phtml/jtree/jquery.tree.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#files').tree({
+			expanded : 'li:first'
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- Header -->
@@ -128,205 +140,72 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 		<div class="wrapper">
 			<!-- Left column/section -->
 			<section class="column width6 first">
+
+				<h3>Nodes on ZooKeeper</h3>
+				<div>
+					<ul id="files" class="tree">
+						<li><a href="javascript:void(0);">/</a>
+							<ul class="tree">
+								<li><a href="javascript:void(0);">transfer/</a>
+									<ul class="tree">
+										<li><a href="#" target="_blank"
+											title="1">1</a></li>
+										<li><a href="#" target="_blank"
+											title="2">2</a><a href="#">xxx</a></li>
+									</ul></li>
+								<li><a href="javascript:void(0);">user/</a>
+									<ul class="tree">
+										<li><a href="#" target="_blank"
+											title="1">1</a></li>
+										<li><a href="#" target="_blank"
+											title="2">2</a></li>
+									</ul></li>
+							</ul></li>
+					</ul>
+				</div>
 				<div class="clear">&nbsp;</div>
 
 				<h3>Monitoring Nodes</h3>
 
-				<table class="display stylized"
-					id="example">
+				<table class="display stylized" id="example">
 					<thead>
 						<tr>
-							<th width="300">Node Path</th>
-							<th>Type</th>
-							<th>Status</th>
-							<th>Alarm Level</th>
+							<th style="width: 200px !important" class="center">Node Path</th>
+							<th style="width: 100px !important" class="center">Type</th>
+							<th style="width: 100px !important" class="center">Status</th>
+							<th style="width: 100px !important" class="center">Alarm
+								Level</th>
 							<th>Manage</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="gradeX">
-							<td>Trident</td>
-							<td>Internet Explorer 4.0</td>
-							<td>Win 95+</td>
-							<td class="center">4</td>
-							<td class="center">X</td>
-						</tr>
-						<tr class="gradeC">
-							<td>Trident</td>
-							<td>Internet Explorer 5.0</td>
-							<td>Win 95+</td>
-							<td class="center">5</td>
-							<td class="center">C</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Trident</td>
-							<td>Internet Explorer 5.5</td>
-							<td>Win 95+</td>
-							<td class="center">5.5</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Trident</td>
-							<td>Internet Explorer 6</td>
-							<td>Win 98+</td>
-							<td class="center">6</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Trident</td>
-							<td>Internet Explorer 7</td>
-							<td>Win XP SP2+</td>
-							<td class="center">7</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Trident</td>
-							<td>AOL browser (AOL desktop)</td>
-							<td>Win XP</td>
-							<td class="center">6</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-
-							<td width="300">Geckoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
-
-							<td>Firefox 1.0</td>
-							<td>Win 98+ / OSX.2+</td>
-							<td class="center">1.7</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Firefox 1.5</td>
-							<td>Win 98+ / OSX.2+</td>
-							<td class="center">1.8</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Firefox 2.0</td>
-							<td>Win 98+ / OSX.2+</td>
-							<td class="center">1.8</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Firefox 3.0</td>
-							<td>Win 2k+ / OSX.3+</td>
-							<td class="center">1.9</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Camino 1.0</td>
-							<td>OSX.2+</td>
-							<td class="center">1.8</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Camino 1.5</td>
-							<td>OSX.3+</td>
-							<td class="center">1.8</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Gecko</td>
-							<td>Netscape 7.2</td>
-							<td>Win 95+ / Mac OS 8.6-9.2</td>
-							<td class="center">1.7</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>KHTML</td>
-							<td>Konqureror 3.3</td>
-							<td>KDE 3.3</td>
-							<td class="center">3.3</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeA">
-							<td>KHTML</td>
-							<td>Konqureror 3.5</td>
-							<td>KDE 3.5</td>
-							<td class="center">3.5</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeX">
-							<td>Tasman</td>
-							<td>Internet Explorer 4.5</td>
-							<td>Mac OS 8-9</td>
-							<td class="center">-</td>
-							<td class="center">X</td>
-						</tr>
-						<tr class="gradeC">
-							<td>Tasman</td>
-							<td>Internet Explorer 5.1</td>
-							<td>Mac OS 7.6-9</td>
-							<td class="center">1</td>
-							<td class="center">C</td>
-						</tr>
-						<tr class="gradeC">
-							<td>Tasman</td>
-							<td>Internet Explorer 5.2</td>
-							<td>Mac OS 8-X</td>
-							<td class="center">1</td>
-							<td class="center">C</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Misc</td>
-							<td>NetFront 3.1</td>
-							<td>Embedded devices</td>
-							<td class="center">-</td>
-							<td class="center">C</td>
-						</tr>
-						<tr class="gradeA">
-							<td>Misc</td>
-							<td>NetFront 3.4</td>
-							<td>Embedded devices</td>
-							<td class="center">-</td>
-							<td class="center">A</td>
-						</tr>
-						<tr class="gradeX">
-							<td>Misc</td>
-							<td>Dillo 0.8</td>
-							<td>Embedded devices</td>
-							<td class="center">-</td>
-							<td class="center">X</td>
-						</tr>
-						<tr class="gradeX">
-							<td>Misc</td>
-							<td>Links</td>
-							<td>Text only</td>
-							<td class="center">-</td>
-							<td class="center">X</td>
-						</tr>
-						<tr class="gradeX">
-							<td>Misc</td>
-							<td>Lynx</td>
-							<td>Text only</td>
-							<td class="center">-</td>
-							<td class="center">X</td>
-						</tr>
-						<tr class="gradeC">
-							<td>Misc</td>
-							<td>IE Mobile</td>
-							<td>Windows Mobile 6</td>
-							<td class="center">-</td>
-							<td class="center">C</td>
-						</tr>
-						<tr class="gradeC">
-							<td>Misc</td>
-							<td>PSP browser</td>
-							<td>PSP</td>
-							<td class="center">-</td>
-							<td class="center">C</td>
-						</tr>
 						<tr class="gradeU">
-							<td>Other browsers</td>
-							<td>All others</td>
-							<td>-</td>
-							<td class="center">-</td>
-							<td class="center">U</td>
+							<td>/transfer/10.10.1.6/play:9100</td>
+							<td>PERSISTENT</td>
+							<td>UNKNOWN</td>
+							<td>CRITICAL</td>
+							<td><a href="#">Remove</a>&nbsp;<a href="#">Pause</a></td>
+						</tr>
+						<tr class="gradeA">
+							<td>/transfer/10.10.1.6/play:9000</td>
+							<td>EPHEMERAL</td>
+							<td>UP</td>
+							<td>NORMAL</td>
+							<td><a href="#">Remove</a>&nbsp;<a href="#">Pause</a></td>
+						</tr>
+						<tr class="gradeX">
+							<td>/transfer/10.10.1.6/play:9009</td>
+							<td>PERSISTENT</td>
+							<td>DOWN</td>
+							<td>CRITICAL</td>
+							<td><a href="#">Remove</a>&nbsp;<a href="#">Pause</a></td>
+						</tr>
+						<tr class="gradeA">
+							<td>/transfer/10.10.1.6/play:9008</td>
+							<td>EPHEMERAL</td>
+							<td>UP</td>
+							<td>NORMAL</td>
+							<td><a href="#">Remove</a>&nbsp;<a href="#">Pause</a></td>
 						</tr>
 					</tbody>
 					<tfoot>
