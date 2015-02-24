@@ -42,6 +42,7 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 <script type="text/javascript" SRC="js/jquery.nyroModal.pack.js"></script>
 <!-- jQuery data tables -->
 <script type="text/javascript" SRC="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" SRC="js/context.menu.js"></script>
 <!-- Internet Explorer Fixes -->
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>
@@ -67,8 +68,7 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 <link rel="stylesheet" href="css/tree.css" type="text/css" />
 <!-- <script type="text/javascript"
 	src="http://www.keleyi.com/keleyi/pmedia/jquery-1.8.2.min.js"></script> -->
-<script type="text/javascript"
-	src="http://www.keleyi.com/keleyi/phtml/jtree/jquery.tree.js"></script>
+<script type="text/javascript" src="js/jquery.tree.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#files').tree({
@@ -146,23 +146,29 @@ Default colour scheme is blue. Uncomment prefered stylesheet to use it.
 					<ul id="files" class="tree">
 						<li><a href="javascript:void(0);">/</a>
 							<ul class="tree">
-								<li><a href="javascript:void(0);">transfer/</a>
+							
+								<li><table>
+										<tr>
+											<td><a href="#" class="btn btn-blue">Refresh</a></td>
+											<td><a href="#" class="btn btn-blue">Monitor</a></td>
+											<td>Data</td>
+										</tr>
+									</table>
+								</li>
+									<li><a href="#">transfer/</a>
 									<ul class="tree">
-										<li><a href="#" target="_blank"
-											title="1">1</a></li>
-										<li><a href="#" target="_blank"
-											title="2">2</a><a href="#">xxx</a></li>
+										<li><a href="#" target="_blank" title="1">1</a></li>
+										<li><a href="#" target="_blank" title="2">2</a></li>
 									</ul></li>
-								<li><a href="javascript:void(0);">user/</a>
+								<li><a href="#">user/</a>
 									<ul class="tree">
-										<li><a href="#" target="_blank"
-											title="1">1</a></li>
-										<li><a href="#" target="_blank"
-											title="2">2</a></li>
+										<li><a href="#" target="_blank" title="1">1</a></li>
+										<li><a href="#" target="_blank" title="2">2</a></li>
 									</ul></li>
 							</ul></li>
 					</ul>
 				</div>
+
 				<div class="clear">&nbsp;</div>
 
 				<h3>Monitoring Nodes</h3>
