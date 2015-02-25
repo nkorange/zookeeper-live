@@ -38,7 +38,7 @@ public class ManageController extends Controller {
 					return null;
 				}
 				MonitorNodes.monitorNodes().addNode(path, alarmLevel);
-				return null;
+				return node;
 			}
 			
 		});
@@ -50,5 +50,18 @@ public class ManageController extends Controller {
 				return ok(object.toString());
 			}
 		}));
+	}
+	
+	public static Result removePath() {
+		Map<String, String[]> params = request().body().asFormUrlEncoded();
+		final String path = BaseController.TransformParam("path", params);
+		TrieNode node = PathTrie.zkPathTrie().getNode(path);
+		if (node == null) {
+			return null;
+		}
+		if (MonitorNodes.monitorNodes().hasNode(path)) {
+			MonitorNodes.monitorNodes().deleteNode(path);
+		}
+		return ok();
 	}
 }

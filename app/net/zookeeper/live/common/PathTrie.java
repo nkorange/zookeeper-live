@@ -17,7 +17,7 @@ import play.Logger;
  * @author zpf.073@gmail.com
  *
  */
-public class PathTrie implements Serializable{
+public class PathTrie implements Serializable {
 
 	/**
 	 * 
@@ -64,7 +64,7 @@ public class PathTrie implements Serializable{
 			Logger.error("[PathTrie] path invalid:" + path);
 			return;
 		}
-		
+
 		if (path.length() == 1) {
 			rootNode.setProperty(property);
 			rootNode.setSettings(settings);
@@ -84,10 +84,10 @@ public class PathTrie implements Serializable{
 				lastNode = currentNode;
 			}
 		}
-		
+
 		currentNode.setProperty(property);
 		currentNode.setSettings(settings);
-		
+
 		return;
 	}
 
@@ -101,19 +101,20 @@ public class PathTrie implements Serializable{
 	public void addNodes(List<String> paths) {
 		List<NodeProperty> properties = new ArrayList<NodeProperty>();
 		List<NodeSettings> settings = new ArrayList<NodeSettings>();
-		for (int i=0; i<paths.size(); i++) {
+		for (int i = 0; i < paths.size(); i++) {
 			properties.add(null);
 			settings.add(null);
 		}
 		addNodes(paths, properties, settings);
 	}
-	
+
 	public TrieNode getNode(String path) {
-		if (StringUtils.isEmpty(path) || path.charAt(0)!='/') {
+		if (StringUtils.isEmpty(path) || path.charAt(0) != '/') {
 			return null;
 		}
-		
-		if (path.length() == 1) return rootNode;
+
+		if (path.length() == 1)
+			return rootNode;
 		String[] dirs = path.split("/");
 		TrieNode currentNode = rootNode;
 		for (String dir : dirs) {
@@ -132,7 +133,7 @@ public class PathTrie implements Serializable{
 			return;
 		}
 		TrieNode parentNode = node.getParent();
-		//parentNode.children.remove(node.directory);
+		// parentNode.children.remove(node.directory);
 		parentNode.deleteChild(node.getDirectory());
 	}
 
@@ -151,9 +152,9 @@ public class PathTrie implements Serializable{
 			Logger.error("[PathTrie] node not exist at path:" + path);
 			return;
 		}
-		
+
 		node.setProperty(property);
-		
+
 	}
 
 	public NodeSettings getSettings(String path) {
@@ -171,7 +172,7 @@ public class PathTrie implements Serializable{
 			Logger.error("[PathTrie] node not exist at path:" + path);
 			return;
 		}
-		
+
 		node.setSettings(settings);
 	}
 
@@ -190,11 +191,9 @@ public class PathTrie implements Serializable{
 			Logger.error("[PathTrie] node not exist at path:" + path);
 			return;
 		}
-		
+
 		node.setData(data);
 	}
-	
-	
 
 	public static class TrieNode {
 
@@ -206,6 +205,7 @@ public class PathTrie implements Serializable{
 		private NodeSettings settings;
 		private byte[] data;
 		private String directory;
+		private int status;
 
 		private TrieNode(TrieNode parent) {
 			this(parent, "/");
@@ -247,6 +247,14 @@ public class PathTrie implements Serializable{
 
 		public void setDirectory(String directory) {
 			this.directory = directory;
+		}
+
+		public int getStatus() {
+			return status;
+		}
+
+		public void setStatus(int status) {
+			this.status = status;
 		}
 
 		TrieNode getParent() {

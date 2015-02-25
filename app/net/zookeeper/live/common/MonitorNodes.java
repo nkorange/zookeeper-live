@@ -47,12 +47,16 @@ public class MonitorNodes {
 			return;
 		}
 		node.setSettings(new NodeSettings(alarmLevel));
-		nodes.put(path, node);
+		synchronized(nodes) {
+			nodes.put(path, node);
+		}
 		//here we send this 
 	}
 
 	public void deleteNode(String path) {
-		nodes.remove(path);
+		synchronized(nodes) {
+			nodes.remove(path);
+		}
 	}
 
 	public void setAlarmLevel(String path, int alarmLevel) {

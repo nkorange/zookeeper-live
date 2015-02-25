@@ -20,6 +20,9 @@ import net.zookeeper.live.common.Task;
  */
 public class ProcessResultJob extends Thread {
 
+	/**
+	 * result map, key is the path of the node
+	 */
 	private static Map<String, Task> resultMap = new HashMap<String, Task>();
 	private static LinkedList<Task> resultList = new LinkedList<Task>();
 	private static WebSocket.Out<Object> out = null;
@@ -38,6 +41,10 @@ public class ProcessResultJob extends Thread {
 		resultList.add(task);
 		rwLock.removeEvent.signalAll();
 
+	}
+	
+	public static Task getResult(String path) {
+		return resultMap.get(path);
 	}
 
 	public static void sendSingleResult() {

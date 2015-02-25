@@ -97,7 +97,8 @@ public class CheckNodeStatusJob extends Thread {
 				}
 			}
 
-			if (task != null) {
+			if (task != null
+					&& MonitorNodes.monitorNodes().hasNode(task.getPath())) {
 				NodeProperty property = getStatus(task.getPath());
 				if (property != null) {
 					NodeStatusResult result = new NodeStatusResult();
