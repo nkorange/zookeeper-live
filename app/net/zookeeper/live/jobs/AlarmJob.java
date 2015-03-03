@@ -60,14 +60,23 @@ public class AlarmJob extends Thread {
 		}, 0, ALARM_REFRESH_INTERVAL, TimeUnit.MILLISECONDS);
 	}
 
+	/**
+	 * 
+	 */
 	public void refreshAlarm() {
 
 		AlarmInfo info = null;
-		for (int i=0; i<alarmList.size(); i++) {
+		int listSize = 0;
+		synchronized(alarmList) {
+			listSize = alarmList.size();
+		}
+		
+		for (int i=0; i<listSize; i++) {
+			if (alarmList.isEmpty()) break;
 			info = alarmList.remove();
 			if (info != null) {
 				// confirm the alarm again:
-				if (info.getCreateTime() <= (System.currentTimeMillis() - ALARM_REFRESH_INTERVAL * 1000)) {
+				if (info.getCreateTime() <= (System.currentTimeMillis() - ALARM_REFRESH_INTERVAL)) {
 					if (info instanceof NodeAlarmInfo) {
 						Task task = ProcessResultJob.getResult(((NodeAlarmInfo) info).getPath());
 						if (task == null) continue;

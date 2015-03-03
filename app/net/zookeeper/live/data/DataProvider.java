@@ -39,4 +39,13 @@ public class DataProvider {
 		String userPasswd = config.getString("user.default.password", "admin");
 		User.addUser(userName, EncriptUtil.encriptPassword(userPasswd), UserGroup.GROUP_ADMIN);
 	}
+	
+	public static boolean validateUserToken(String token) {
+		//TODO
+		return false;
+	}
+	
+	public static User getUser(String userName) {
+		return User.getUser(userName);
+	}
 }

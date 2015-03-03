@@ -3,7 +3,6 @@ package net.zookeeper.live.controllers;
 import java.util.Map;
 
 import play.mvc.Controller;
-import play.mvc.Result;
 
 /**
  * 
@@ -12,10 +11,6 @@ import play.mvc.Result;
  */
 public class BaseController extends Controller {
 	
-	public static Result index() {
-		return ok();
-	}
-
 	public static String TransformParam(String key, Map<String, String[]> params) {
 		String temp = "";
 		String[] str = params.get(key);
@@ -26,21 +21,27 @@ public class BaseController extends Controller {
 	}
 
 	public static String getQueryString(String key) {
-		return request().getQueryString(key);
+		return getQueryString(key, "");
+	}
+
+	public static String getQueryString(String key, String defaultValue) {
+		String s = request().getQueryString(key);
+		if (s == null) {
+			return defaultValue;
+		}
+		return s;
 	}
 
 	public static long getQueryLong(String key) {
-		String s = request().getQueryString(key);
-		if (s != null) {
-			try {
-				return Long.parseLong(s);
-			} catch (Exception e) {
-			}
-		}
-		return 0;
+
+		return getQueryLong(key, 0L);
 	}
 
 	public static int getQueryInt(String key) {
+		return getQueryInt(key, 0);
+	}
+
+	public static int getQueryInt(String key, int defaultVal) {
 		String s = request().getQueryString(key);
 		if (s != null) {
 			try {
@@ -48,6 +49,31 @@ public class BaseController extends Controller {
 			} catch (Exception e) {
 			}
 		}
-		return 0;
+		return defaultVal;
+	}
+
+	public static Boolean getQueryBoolean(String key) {
+		return getQueryBoolean(key, false);
+	}
+
+	public static Boolean getQueryBoolean(String key, Boolean defaultVal) {
+		Boolean showProfile = defaultVal;
+		try {
+			String s = request().getQueryString(key);
+			showProfile = Boolean.parseBoolean(s);
+		} catch (Exception e) {
+		}
+		return showProfile;
+	}
+
+	public static long getQueryLong(String key, long defaultVal) {
+		String s = request().getQueryString(key);
+		if (s != null) {
+			try {
+				return Long.parseLong(s);
+			} catch (Exception e) {
+			}
+		}
+		return defaultVal;
 	}
 }
